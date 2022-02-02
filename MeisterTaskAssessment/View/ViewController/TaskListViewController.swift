@@ -131,7 +131,7 @@ extension TaskListViewController:UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(performSearch), userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(performSearch), userInfo: nil, repeats: false)
     }
         
     @objc func performSearch() {

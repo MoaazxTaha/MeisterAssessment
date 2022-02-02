@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meister Code Challange" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEX-Q1-BvA">
-                                <rect key="frame" x="39.5" y="380" width="335" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meister Code Challange" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEX-Q1-BvA">
+                                <rect key="frame" x="20" y="380" width="374" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <color key="textColor" red="0.89938300849999997" green="0.38549447060000003" blue="0.54902505869999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -44,12 +45,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ZEX-Q1-BvA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="0ho-21-7bU"/>
                             <constraint firstAttribute="bottom" secondItem="J83-Z8-yZb" secondAttribute="bottom" constant="60" id="1te-h3-iCK"/>
                             <constraint firstItem="ZEX-Q1-BvA" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9Ca-Mi-gc8"/>
                             <constraint firstItem="ZEX-Q1-BvA" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="PFp-PY-kqg"/>
                             <constraint firstItem="J83-Z8-yZb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="STo-MX-Ec5"/>
                             <constraint firstAttribute="bottom" secondItem="TOF-2n-5AA" secondAttribute="bottom" constant="60" id="Tpv-xg-wI5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TOF-2n-5AA" secondAttribute="trailing" constant="20" id="dDb-1e-T09"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZEX-Q1-BvA" secondAttribute="trailing" constant="20" id="jkz-p5-ewN"/>
                         </constraints>
                     </view>
                 </viewController>

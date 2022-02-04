@@ -62,6 +62,7 @@ extension TaskListViewController {
     //SegmentControl Action
     @IBAction func segmentChanged(_ sender: Any) {
         if let segmentControl = sender as? UISegmentedControl {
+            showBuffering()
             viewModel.filteringTerm = FilterationParameter(rawValue: segmentControl.selectedSegmentIndex) ?? .All
         }
     }

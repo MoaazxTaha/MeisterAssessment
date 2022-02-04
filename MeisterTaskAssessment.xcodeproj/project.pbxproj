@@ -28,6 +28,7 @@
 		422B5F4C27AA33D300D5E0C3 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B5F4B27AA33D300D5E0C3 /* UIViewController+Extensions.swift */; };
 		422B5F5027AA3BA400D5E0C3 /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B5F4F27AA3BA400D5E0C3 /* NetworkConnection.swift */; };
 		422B5F5427AA90C700D5E0C3 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B5F5327AA90C700D5E0C3 /* String+Extensions.swift */; };
+		429CE2E327AC8DBB00B3D5F9 /* TaskListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429CE2E227AC8DBB00B3D5F9 /* TaskListDataSource.swift */; };
 		C0C1B11F993673BC0787C6A8 /* Pods_MeisterTaskAssessment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF59B27E84D68CB247553772 /* Pods_MeisterTaskAssessment.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		422B5F4B27AA33D300D5E0C3 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		422B5F4F27AA3BA400D5E0C3 /* NetworkConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnection.swift; sourceTree = "<group>"; };
 		422B5F5327AA90C700D5E0C3 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		429CE2E227AC8DBB00B3D5F9 /* TaskListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListDataSource.swift; sourceTree = "<group>"; };
 		6CD69CDBB4161EA4ED7753DA /* Pods-MeisterTaskAssessment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeisterTaskAssessment.debug.xcconfig"; path = "Target Support Files/Pods-MeisterTaskAssessment/Pods-MeisterTaskAssessment.debug.xcconfig"; sourceTree = "<group>"; };
 		FF59B27E84D68CB247553772 /* Pods_MeisterTaskAssessment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeisterTaskAssessment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				422B5F3227A9972E00D5E0C3 /* TaskListViewModel.swift */,
+				429CE2E227AC8DBB00B3D5F9 /* TaskListDataSource.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				422B5F3827A9AD6D00D5E0C3 /* API.swift in Sources */,
 				422B5F4327A9E51600D5E0C3 /* EmptySearchBarCell.swift in Sources */,
 				422B5F5027AA3BA400D5E0C3 /* NetworkConnection.swift in Sources */,
+				429CE2E327AC8DBB00B3D5F9 /* TaskListDataSource.swift in Sources */,
 				422B5F1B27A97C8300D5E0C3 /* MeisterTaskAssessment.xcdatamodeld in Sources */,
 				422B5F4827AA265C00D5E0C3 /* CoreDataManager.swift in Sources */,
 				422B5F4C27AA33D300D5E0C3 /* UIViewController+Extensions.swift in Sources */,

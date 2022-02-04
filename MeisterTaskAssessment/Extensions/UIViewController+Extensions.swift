@@ -11,7 +11,7 @@ import Reachability
 
 
 extension UIViewController {
-
+    
     func bindReachability() {
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: NetworkConnection.shared.reachability)
     }
@@ -26,7 +26,7 @@ extension UIViewController {
         alert.addAction(okButton)
         present(alert, animated: true, completion: nil)
     }
- 
+    
     
     @objc func reachabilityChanged(note: Notification) {
         let reachability = note.object as! Reachability

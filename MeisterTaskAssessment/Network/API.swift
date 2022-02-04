@@ -4,11 +4,12 @@
 //
 //  Created by Moaaz Ahmed Fawzy Taha on 01/02/2022.
 //
-
 import Foundation
 
+typealias SearchQuery = (FilterationParameter,String)
+
 enum API {
-    case searchTask([Int])
+    case searchTask(SearchQuery)
 }
 
 extension API: Endpoint{
@@ -42,10 +43,8 @@ extension API: Endpoint{
     var queryItems: [URLQueryItem] {
         switch self {
         case let .searchTask(query):
-            return [URLQueryItem(name: "filter", value: "{\"status\":\(String(describing:query))}"),
+            return [URLQueryItem(name: "filter", value: "{\"status\":\(String(describing:query.0.value)),\"text\":\"\(query.1)\"}"),
                     URLQueryItem(name: "response_format", value: "object")]
         }
     }
-    
-    
 }

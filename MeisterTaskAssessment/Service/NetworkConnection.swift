@@ -8,13 +8,14 @@
 import Foundation
 import Reachability
 
-class NetworkConnection {
+protocol ReachabilityInterface {
+    var isConnected:Bool { get }
+}
+
+class NetworkConnection:ReachabilityInterface {
     static let shared = NetworkConnection()
     
     let reachability = try! Reachability()
-    var isConnected: Bool {
-        return reachability.connection != .unavailable
-    }
     
     private init() {
         do{
@@ -23,4 +24,10 @@ class NetworkConnection {
           print("could not start reachability notifier with error:\(error)")
         }
     }
+}
+
+extension NetworkConnection {
+var isConnected: Bool {
+    return reachability.connection != .unavailable
+}
 }

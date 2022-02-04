@@ -20,55 +20,41 @@ enum FilterationParameter: Int {
             return [18]
         }
     }
-    
 }
 
 class TaskListViewModel {
     
-    private var tasks:[Task] = []
-    internal var filteredTasks:[Task]=[]
+    var tasksDidChange:(()->Void) = {}
+    
+    internal var filteredTasks:[Task]=[] {
+        willSet {
+            dataSource.filteredTasks = newValue
+        }
+    }
     
     private let repo = TaskListRepository()
+    let dataSource = TableViewDataSource(filteredTasks: [])
     
-    internal var searchingTerm: String = "" {
+    internal var filteringTerm: FilterationParameter = .All
+    {
         didSet {
-            filterResultsByKeyword()
+            fetchTasks(searchValues:(filteringTerm,searchingTerm))
         }
     }
     
-    internal func fetchTasks(filterValue:FilterationParameter, handler:@escaping ()->Void) {
-        
-        repo.fetchTasks(filterValue: filterValue.value) { [weak self] tasks in
+    internal var searchingTerm: String = ""
+    {
+        didSet {
+            fetchTasks(searchValues:(filteringTerm,searchingTerm))
+        }
+    }
+    
+    internal func fetchTasks(searchValues:SearchQuery) {
+        repo.fetchTasks(searchValues: searchValues) { [weak self] tasks in
             guard let self = self else {return}
-            
-            if let tasks = tasks {
-                self.tasks = tasks
-                self.filterResultsByKeyword()
-                handler ()
-            } else {
-                print("no data found ")
-            }
+            self.filteredTasks = tasks
+            self.tasksDidChange()
         }
     }
-    
-    private func filterResultsByKeyword() {
-        guard !searchingTerm.isEmpty else {
-            filteredTasks = []
-            return
-        }
-        
-        let searchText = searchingTerm.searchable()
-        self.filteredTasks = tasks.filter({ task in
-            if let name = task.name?.searchable(),
-               let projectName = task.projectName?.searchable() {
-                return name.contains(searchText) || projectName.contains(searchText)
-            } else {
-                return false
-            }
-        })
-        
-        CoreDataManager.shared.save(tasks: filteredTasks)
-    }
-    
 }
 

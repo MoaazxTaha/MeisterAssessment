@@ -10,7 +10,7 @@ import UIKit
 class EmptySearchBarCell: UITableViewCell {
 
     @IBOutlet weak var searchMessage: UILabel!
-    static let cellIdentfier = "EmptySearchBarCell"
+    static let cellIdentifier = "EmptySearchBarCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,7 +18,4 @@ class EmptySearchBarCell: UITableViewCell {
         selectionStyle = .none
         searchMessage.text = "search for a Task \n with a few keywords"
     }
-
-
-    
 }

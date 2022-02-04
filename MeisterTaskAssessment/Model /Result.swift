@@ -12,7 +12,7 @@ class Result:Codable {
 }
 
 class Results:Codable {
-    let tasks:[Task]?
+    var tasks:[Task]?
     let sections:[Section]?
     let projects:[Project]?
     
@@ -31,8 +31,7 @@ class Results:Codable {
     }
 }
 
-
-class Task:Codable {
+class Task: Codable {
     var id:Int?
     var name:String?
     var status:Int?
@@ -44,6 +43,18 @@ class Task:Codable {
         case sectionId = "section_id"
     }
     
+}
+
+extension Task: Equatable {
+    static func == (lhs: Task, rhs: Task) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+extension Task: Hashable {
+    public func hash(into hasher: inout Hasher) {
+         hasher.combine(id)
+    }
 }
 
 class Section:Codable {

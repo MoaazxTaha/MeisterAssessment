@@ -7,48 +7,53 @@
 
 import Foundation
 
+protocol RepositoryInterface {
+    func fetchTasks(searchValues:SearchQuery, compilation: @escaping ([Task])->Void)
+}
 
 class TaskListRepository {
     
-    func fetchTasks(filterValue:[Int], compilation: @escaping ([Task]?)->Void) {
-        if(NetworkConnection.shared.isConnected) {
-            APIRequest(filterValue: filterValue) { tasks in
-                compilation(tasks)
-            }
-        } else {
-            localRequest(filterValue: filterValue) { tasks in
-                compilation(tasks)
-            }
-        }
-    }
+    //MARK: URL session
     
-    private func APIRequest(filterValue:[Int], compilation: @escaping ([Task]?)->Void) {
+    private func APIRequest(searchValues:SearchQuery, compilation: @escaping ([Task])->Void) {
         
         let session = URLSession(configuration: .default)
         
-        let task = session.dataTask(with: API.searchTask(filterValue).request) { [weak self] data, URLResponse, Error in
+        let task = session.dataTask(with: API.searchTask(searchValues).request) { [weak self] data, URLResponse, Error in
             guard let self = self else {return}
             
             if let Error = Error {
                 print (Error.localizedDescription)
             }
             if let data = data {
-                let tasks = self.decodeJson(Data: data)?.tasks
-//                please uncomment nextline in case it's intended to save the Results from the API before applying search.
-//                CoreDataManager.shared.save(tasks: tasks)
-                compilation(tasks)
+                if let tasks = self.decodeJson(Data: data)?.tasks {
+                    CoreDataManager.shared.save(tasks: tasks)
+                    compilation(tasks)
+                }
             }
         }
         task.resume()
     }
     
-    private func localRequest(filterValue:[Int], compilation: @escaping ([Task]?)->Void){
-        CoreDataManager.shared.retrieveTasks { tasks in
-            if let tasks = tasks {
-                let filteredTasks = tasks.filter({filterValue.contains($0.status ?? 1)})
-                compilation(filteredTasks)
-            } else {
-                compilation(nil)
+    //MARK: retrieve CoreData
+    
+    private func localRequest(searchValues:SearchQuery, compilation: @escaping ([Task])->Void){
+        CoreDataManager.shared.retrieveTasks(searchParameters: searchValues) { tasks in
+            compilation(tasks)
+        }
+    }
+}
+
+extension TaskListRepository:RepositoryInterface {
+    func fetchTasks(searchValues:SearchQuery, compilation: @escaping ([Task])->Void) {
+        
+        if(NetworkConnection.shared.isConnected) {
+            APIRequest(searchValues: searchValues) { tasks in
+                compilation(tasks)
+            }
+        } else {
+            localRequest(searchValues: searchValues) { tasks in
+                compilation(tasks)
             }
         }
     }
@@ -59,7 +64,6 @@ class TaskListRepository {
 //MARK: - decoding jason data from api
 
 extension TaskListRepository {
-    
     private func decodeJson(Data:Data)-> Results? {
         
         let decoder = JSONDecoder()

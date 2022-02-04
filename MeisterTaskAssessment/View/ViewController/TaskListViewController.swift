@@ -15,9 +15,7 @@ class TaskListViewController: UIViewController {
     @IBOutlet weak var bufferingView: UIView!
     
     private let viewModel = TaskListViewModel()
-    private var result:Result?
     private var timer = Timer()
-    
     fileprivate var listIsEmpty:Bool {
         return viewModel.filteredTasks.isEmpty
     }
@@ -27,28 +25,18 @@ class TaskListViewController: UIViewController {
         bindReachability()
         searchBar.delegate = self
         setupTableView()
-        loadTasks(with: .All)
     }
-
+    
     
     deinit {
         unbindReachability()
     }
     
-    private func loadTasks(with filterValue:FilterationParameter) {
-        showBuffering()
-        viewModel.fetchTasks(filterValue: filterValue) {[weak self] in
-            DispatchQueue.main.async {[weak self] in
-                self?.hideBuffering()
-                self?.taskList.reloadData()
-            }
-        }
-    }
-
+    
     private func setupTableView() {
-        taskList.register(UINib(nibName: String(describing: TaskCell.self) , bundle: nil), forCellReuseIdentifier:TaskCell.cellIdentfier)
-        taskList.register(UINib(nibName: String(describing: EmptySearchBarCell.self) , bundle: nil), forCellReuseIdentifier:EmptySearchBarCell.cellIdentfier)
-        taskList.dataSource = self
+        taskList.register(UINib(nibName: String(describing: TaskCell.self) , bundle: nil), forCellReuseIdentifier:TaskCell.cellIdentifier)
+        taskList.register(UINib(nibName: String(describing: EmptySearchBarCell.self) , bundle: nil), forCellReuseIdentifier:EmptySearchBarCell.cellIdentifier)
+        taskList.dataSource = viewModel.dataSource
         taskList.delegate = self
         taskList.tableHeaderView?.frame.size.height = 80
         taskList.backgroundColor = .clear
@@ -57,8 +45,14 @@ class TaskListViewController: UIViewController {
         //RefreshControl setup
         taskList.refreshControl = UIRefreshControl()
         taskList.refreshControl?.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        
+        // bind
+        viewModel.tasksDidChange = {[weak self] in
+            DispatchQueue.main.async {[weak self] in
+                self?.taskList.reloadData()
+            }
+        }
     }
-    
 }
 
 //MARK: - Actions
@@ -67,7 +61,7 @@ extension TaskListViewController {
     //SegmentControl Action
     @IBAction func segmentChanged(_ sender: Any) {
         if let segmentControl = sender as? UISegmentedControl {
-            loadTasks(with: FilterationParameter(rawValue: segmentControl.selectedSegmentIndex) ?? .All)
+            viewModel.filteringTerm = FilterationParameter(rawValue: segmentControl.selectedSegmentIndex) ?? .All
         }
     }
     
@@ -91,27 +85,6 @@ extension TaskListViewController {
 
 //MARK: - TableView Delegate & Data source
 
-// TableView Datasource
-extension TaskListViewController:UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !listIsEmpty else {return 1}
-        
-        return (viewModel.filteredTasks.count)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard !listIsEmpty else {
-            let cell = taskList.dequeueReusableCell(withIdentifier: EmptySearchBarCell.cellIdentfier, for: indexPath) as! EmptySearchBarCell
-            return cell
-        }
-        
-        let cell = taskList.dequeueReusableCell(withIdentifier: TaskCell.cellIdentfier, for: indexPath) as! TaskCell
-        cell.configureCell(with: viewModel.filteredTasks[indexPath.row])
-        return cell
-    }
-    
-}
 
 // TableView Delegate
 extension TaskListViewController:UITableViewDelegate {
@@ -133,12 +106,12 @@ extension TaskListViewController:UISearchBarDelegate {
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(performSearch), userInfo: nil, repeats: false)
     }
-        
+    
     @objc func performSearch() {
         showBuffering()
         if let serachingTerm = searchBar.searchTextField.text {
             viewModel.searchingTerm = serachingTerm
-            taskList.reloadData()
+            
         }
         hideBuffering()
     }

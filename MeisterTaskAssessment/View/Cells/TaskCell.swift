@@ -9,7 +9,7 @@ import UIKit
 
 class TaskCell: UITableViewCell {
     
-    static let cellIdentfier = "TaskCell"
+    static let cellIdentifier = "TaskCell"
     @IBOutlet weak var projectName: UILabel!
     @IBOutlet weak var taskName: UILabel!
     @IBOutlet weak var containView: UIView!

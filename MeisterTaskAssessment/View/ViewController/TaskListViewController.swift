@@ -50,6 +50,7 @@ class TaskListViewController: UIViewController {
         viewModel.tasksDidChange = {[weak self] in
             DispatchQueue.main.async {[weak self] in
                 self?.taskList.reloadData()
+                self?.hideBuffering()
             }
         }
     }
@@ -113,6 +114,5 @@ extension TaskListViewController:UISearchBarDelegate {
             viewModel.searchingTerm = serachingTerm
             
         }
-        hideBuffering()
     }
 }

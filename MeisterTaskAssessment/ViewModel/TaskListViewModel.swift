@@ -20,6 +20,15 @@ enum FilterationParameter: Int {
             return [18]
         }
     }
+    
+    var query: NSPredicate {
+        switch self {
+        case .All:
+            return NSCompoundPredicate(orPredicateWithSubpredicates: [FilterationParameter.Active.query, FilterationParameter.Archived.query])
+        case .Archived, .Active:
+            return NSPredicate(format: "status = %i", self.value.first!)
+        }
+    }
 }
 
 class TaskListViewModel {

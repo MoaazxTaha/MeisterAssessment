@@ -38,7 +38,7 @@ class TaskListRepository {
     //MARK: retrieve CoreData
     
     private func localRequest(searchValues:SearchQuery, compilation: @escaping ([Task])->Void){
-        CoreDataManager.shared.retrieveTasks(searchParameters: searchValues) { tasks in
+        CoreDataManager.shared.retrieveTasks(with : searchValues) { tasks in
             compilation(tasks)
         }
     }
@@ -58,7 +58,6 @@ extension TaskListRepository:RepositoryInterface {
         }
     }
 }
-
 
 
 //MARK: - decoding jason data from api

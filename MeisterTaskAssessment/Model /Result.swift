@@ -37,9 +37,10 @@ class Task: Codable {
     var status:Int?
     var sectionId:Int?
     var projectName:String?
+    var updated_at:String?
     
     enum CodingKeys: String, CodingKey {
-        case id, name, status, projectName
+        case id, name, status, projectName, updated_at
         case sectionId = "section_id"
     }
     

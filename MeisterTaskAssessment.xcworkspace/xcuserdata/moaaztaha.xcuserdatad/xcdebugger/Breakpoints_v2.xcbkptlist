@@ -7,49 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1F9BD04D-F51D-4D04-AD15-11DB563A3595"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MeisterTaskAssessment/Network/TaskListRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "APIRequest(searchValues:compilation:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B5DE7167-8439-4208-B141-9C3C98FD52E7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MeisterTaskAssessment/Network/TaskListRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "APIRequest(searchValues:compilation:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "896926FF-26B4-417C-B584-7363665880DA"
+            uuid = "F24071F3-AF02-4447-8339-4DE97C0A8AFF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MeisterTaskAssessment/Service/CoreDataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "retrieveTasks(searchParameters:completion:)"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "save(tasks:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1AB663F7-61B6-4EA5-81B3-B47E112313DA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MeisterTaskAssessment/Service/CoreDataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "compare(existedTask:with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1AB663F7-61B6-4EA5-81B3-B47E112313DA - 94ed7c863feca415"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MeisterTaskAssessment.CoreDataManager.compare(existedTask: __C.NSManagedObject, with: MeisterTaskAssessment.Task) -&gt; ()"
+                  moduleName = "MeisterTaskAssessment"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/moaaztaha/Documents/MeisterAssessment/MeisterTaskAssessment/Service/CoreDataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "795">
+               </Location>
+               <Location
+                  uuid = "1AB663F7-61B6-4EA5-81B3-B47E112313DA - 94ed7c863feca415"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MeisterTaskAssessment.CoreDataManager.compare(existedTask: __C.NSManagedObject, with: MeisterTaskAssessment.Task) -&gt; ()"
+                  moduleName = "MeisterTaskAssessment"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/moaaztaha/Documents/MeisterAssessment/MeisterTaskAssessment/Service/CoreDataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "854">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
